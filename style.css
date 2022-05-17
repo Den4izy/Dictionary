@@ -1,0 +1,106 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#container{
+	background-color: cyan;
+	display: grid;
+	grid-template-areas: 
+		"header header header"
+		"nav main static"
+		"footer footer footer";
+  grid-template-rows: 60px 1fr 60px;
+  grid-template-columns: 220px 1fr 200px;
+  grid-gap: 10px;
+  height: 100vh;
+  margin: 0;
+}
+#head{
+	text-align: center;
+	color: yellow;
+	background-color: blue;
+	grid-area: header;
+}
+#nav{
+	background-color: yellow;
+	grid-area: nav;
+}
+#navigationName{
+	text-align: center;
+}
+.navigation{
+	width: 90%;
+	height: 50px;
+	border-radius: 10px;
+	background-color: orange;
+	margin: 10px auto;
+}
+.navigationList{
+	margin: 10px 10px 0px 10px;
+	padding-left: 10px;
+	color: white;
+	font-size: 20pt;
+	font-style: italic;
+	cursor: pointer;
+	border-radius: 10px;
+}
+#navigationMenu{
+	height: calc(100% - 80px);
+	margin-bottom: 40px;
+	
+}
+#main{
+	background-color: green;
+	grid-area: main;
+}
+#stats{
+	background-color: olive;
+	grid-area: static;
+}
+#footer{
+	background-color: brown;
+	grid-area: footer;
+}
+
+.navigationList:hover{
+	color: orange;
+	background-color: white;
+}
+
+containerAdd{
+
+}
+
+#nameAdd{
+	text-align: center;
+	font-size: 24pt;
+	background-color: orange;
+	color: white;
+	border-radius: 10px;
+	margin: 20px 20px 0px 20px;
+
+}
+#wordsAdd{
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	height: 100%;
+	margin: 20px 20px 0px 20px;
+}
+.width_40pr{
+	width: 70%;
+}
+
+input{
+	width: 200px;
+	font-size: 24pt;
+}
+
+#englishLabelAdd{
+	margin: 5px 40px 30px 0px;
+}
+#ukraineLabelAdd{
+	margin: 5px 33px 0px 0px;
+
+}
+	
