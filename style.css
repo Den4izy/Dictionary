@@ -81,26 +81,41 @@ containerAdd{
 
 }
 #wordsAdd{
-	display: flex;
-	align-items: flex-start;
-	flex-wrap: wrap;
 	height: 100%;
 	margin: 20px 20px 0px 20px;
+}
+#engAdd, #ukrAdd{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin: 0 auto;
 }
 .width_40pr{
 	width: 70%;
 }
+#englishTextAdd, #englishTextAdd{
 
-input{
-	width: 200px;
+}
+
+.textInputAdd{
+	width: 250px;
 	font-size: 24pt;
+}
+#butAdd{
+	text-align: center;
+	margin-top: 30px;
+}
+#butInputAdd{
+	width: 150px;
+	height: 50px;
+	border-radius: 15px;
 }
 
 #englishLabelAdd{
-	margin: 5px 40px 30px 0px;
+
 }
 #ukraineLabelAdd{
-	margin: 5px 33px 0px 0px;
+
 
 }
 	
