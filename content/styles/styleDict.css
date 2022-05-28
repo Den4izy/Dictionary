@@ -1,0 +1,26 @@
+#headerDict{
+    text-align: center;
+    font-size: 24pt;
+    background-color: orange;
+    color: white;
+    border-radius: 10px;
+    margin: 20px 20px 0px 20px;
+    display: flex;
+}
+#headerEngDict, #headerUkrDict{
+    width: 50%;
+}
+#strokaDict{
+    display: flex;
+    margin: 0px 20px 0px 20px;
+    border-top: 1px solid orange;
+    border-bottom: 1px solid orange;
+}
+#containerWords{
+    height: 50%;
+    overflow: auto;
+}
+#strokaEng, #strokaUkr{
+    width: 50%;
+    font-size: 20pt;
+}

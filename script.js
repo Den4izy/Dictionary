@@ -10,6 +10,7 @@ for(let i = 0; i < lists.length; i++){
 
 function dictionary(){
 	console.log('func dict');
+	senderDict();
 }
 
 function practick(){
@@ -26,6 +27,46 @@ function addWord(){
 
 function category(){
 	console.log('func category');
+}
+
+function senderDict(){
+	console.log('Function senderDict is start');
+	//mainDoc.innerHTML = dictionaryCreateText();
+
+
+	let myUrl = "http://localhost/www/Projects/Dictionary/file.php?funk=allWords";
+	xhr.open('GET', myUrl, true);
+	xhr.onreadystatechange = function (){
+		if(xhr.readyState === 4){
+			if(xhr.status === 200){
+				mainDoc.innerHTML = createAddWordsText(xhr.responseText);
+			}
+		}
+	}
+	xhr.send();
+}
+
+function createAddWordsText(data){
+	let text = dictionaryCreateText();
+	let arr = JSON.parse(data)
+	//console.log(JSON.parse(data));
+	text += '<div id="containerWords">';
+	for(let i = 0; i < arr.length; i++){
+		let arrWords = arr[i].split('-');
+		let eng = arrWords[0];
+		let ukr = arrWords[1];
+		text +=
+			'<div id="strokaDict">' +
+				'<div id="strokaEng">' +
+					'' + eng +
+				'</div>' +
+				'<div id="strokaUkr">' +
+					'' + ukr +
+				'</div>' +
+			'</div>'
+	}
+	text += '</div>';
+	return text;
 }
 
 // ф-я для кнопки додати слово( відсилає запит зі словами)
@@ -47,11 +88,13 @@ function senderAdd(){
 				console.log('Response text: ' + text);
 				docWordEng.value = '';
 				docWordUkr.value = '';
+
 				let log = document.querySelector('#logAdd');
 				log.innerHTML = '<span style="font-style: italic; font-weight: bolder">' + time() + '</span>' + text + log.innerHTML;
 				document.querySelector("#butInputAdd").onclick = function (){
 					senderAdd();
 				}
+				log.style.border = '2px solid orange';
 			}
 		}
 	}
@@ -59,6 +102,7 @@ function senderAdd(){
 		document.querySelector('#logAdd').innerHTML = '<span style="color: darkred">' +
 			'<span style="font-style: italic; font-weight: bolder">' + time() + '</span>' + 'Не заповнені поля<br></span>' +
 			document.querySelector('#logAdd').innerHTML;
+		document.querySelector("logAdd").style.border = '2px solid orange';
 	}else{
 		xhr.send();
 	}
@@ -132,11 +176,26 @@ function addWordCreateText(){
 			'<div id="butAdd">' +
 				'<input type="button" value="OK" id="butInputAdd" >' +
 			'</div>' +
-			'<div id="logAdd" style="margin-left: 20px 20px 0px 20px; max-height: 200px; overflow: auto; border: 2px orange solid">' +
+			'<div id="logAdd">' +
 
 			'</div>' +
 		'</div>'
 	;
+	return text;
+}
+
+function dictionaryCreateText(){
+	let text = '<div id="containerDict">' +
+					'<div id="headerDict">' +
+						'<div id="headerEngDict">' +
+							'English' +
+						'</div>' +
+						'<div id="headerUkrDict">' +
+							'Ukraine' +
+						'</div>' +
+					'</div>' +
+				'</div>' ;
+
 	return text;
 }
 
