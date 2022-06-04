@@ -10,17 +10,46 @@
 #headerEngDict, #headerUkrDict{
     width: 50%;
 }
-#strokaDict{
+.strokaDict{
     display: flex;
     margin: 0px 20px 0px 20px;
     border-top: 1px solid orange;
     border-bottom: 1px solid orange;
+    cursor: pointer;
+    
 }
 #containerWords{
-    height: 50%;
+    max-height: 240px;
     overflow: auto;
 }
 #strokaEng, #strokaUkr{
     width: 50%;
     font-size: 20pt;
+}
+#containerOptionsWord{
+    height: 250px;
+    max-height: 450px;
+    overflow: auto;
+    margin: 0px 20px 0px 20px;
+    background-color: orange;
+    margin: 20px;
+    border-radius: 10px;
+}
+#wordNameOptions{
+    font-size: 20pt;
+    text-align: center;
+    border-bottom: 2px solid cornsilk;
+}
+.wordMenu{
+    font-size: 20pt;
+    text-align: center;
+    font-style: italic;
+    color: white;
+    width: 50%;
+    margin: 10px auto;
+    font-weight: bolder;
+    cursor: pointer;
+    border: 2px solid green;
+    border-radius: 10px;
+    background-color: black;
 }
