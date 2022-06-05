@@ -145,9 +145,9 @@ function changeWord(){
 		document.querySelector('#butChange').onclick = function (){
 			let newEng = document.querySelector('#changeFieldTextEng').value;
 			let newUkr = document.querySelector('#changeFieldTextUkr').value;
-			senderChange(oldEng, oldUkr, newEng, newUkr);
+			senderChange(oldEng,oldUkr, newEng, newUkr);
 		}
-		let fullWord = content;
+
 		//senderChangeWord(fullWord);
 	}
 	
@@ -155,16 +155,8 @@ function changeWord(){
 
 function senderChange(oldEng, oldUkr, newEng, newUkr){
 	console.log('Function senderChange is start');
-	let param = '&wordOldEng=' + oldEng + '&wordOldUkr=' + oldUkr + '&wordNewEng=' + newEng + '&wordNewUkr=' + newUkr ;
-	dictionary();
-	let doc = document.querySelector("#buttonChangeWord");
-	doc.innerHTML = 'редагувати';
-	doc.onclick = function(){
-		changeWord();
-	}
-	document.querySelector("#containerOptionsWord").innerHTML += time() + '"' +
-	  	oldEng + '-' + oldUkr +  '" було замінено на: ' + '"' + newEng + '-' + newUkr + '"';
-	document.querySelector('#wordNameOptions').innerHTML = '';
+	let param = '&wordOldEng=' + oldEng + '&wordNewEng=' + newEng + '&wordNewUkr=' + newUkr ;
+
 
 				//dictionary();
 	if(production == true){
@@ -179,7 +171,16 @@ function senderChange(oldEng, oldUkr, newEng, newUkr){
 	xhr.onreadystatechange = function (){
 		if(xhr.readyState === 4){
 			if(xhr.status === 200 ){
-				//let text = xhr.responseText;
+				console.log(xhr.responseText);
+				dictionary();
+				let doc = document.querySelector("#buttonChangeWord");
+				doc.innerHTML = 'редагувати';
+				doc.onclick = function(){
+					changeWord();
+				}
+				document.querySelector("#containerOptionsWord").innerHTML += time() + '"' +
+					oldEng + '-' + oldUkr +  '" було замінено на: ' + '"' + newEng + '-' + newUkr + '"';
+				document.querySelector('#wordNameOptions').innerHTML = '';
 				
 				
 				

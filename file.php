@@ -82,6 +82,28 @@ if($_GET['funk'] == 'getStats'){
     }
 }
 
+if($_GET['funk'] == 'changeWord'){
+    $oldEng = $_GET['wordOldEng'];
+    $eng = $_GET['wordNewEng'];
+    $ukr = $_GET['wordNewUkr'];
+    //develop
+    //$link = mysqli_connect("localhost", "root", "", "dictionary");
+    //$sql = 'SELECT COUNT(*) FROM test1';
+
+    //production
+    $link = mysqli_connect("localhost", "denysyz", "Wiwelden132435", "qwertyfour");
+    $sql = 'UPDATE dictionary
+    SET engWord="'.$eng.'", ukrWord="'.$ukr.'" WHERE engWord="'.$oldEng.'"';
+
+    if (mysqli_query($link, $sql)) {
+        $result = mysqli_query($link, $sql);
+        echo "OK";
+    }
+    else {
+        echo "Помилка при зчитуванні статистики: " . mysqli_error($link);
+    }
+}
+
 
 
 
