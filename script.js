@@ -95,14 +95,13 @@ function word(event){
 
 function createWordOptionsText(){
 	let text = '';
-
 	text += '<div id="containerOptionsWord">' + 
 				'<div id="wordNameOptions">' +
 				'</div>' +
 				'<div id="buttonDeleteWord" class="wordMenu" onclick="deleteWord()">' +
 					'Видалити' +
 				'</div>' +
-				'<div id="buttonChangeWord" class="wordMenu">' +
+				'<div id="buttonChangeWord" class="wordMenu" onclick="changeWord()">' +
 					'Редагувати' +
 				'</div>' +
 				'<div id="buttonAddToCategory" class="wordMenu">' +
@@ -127,6 +126,84 @@ function deleteWord(){
 		senderDeleteWord(content, fullWord);
 	}
 	//console.log(content, doc);
+}
+
+function changeWord(){
+	console.log('function changeWord is start');
+	let doc = document.querySelector('#wordNameOptions');
+	let content = doc.innerText;
+	
+	if(content == ''){
+		alert('Не вибране слово');
+	}
+	else{
+		let arr = content.split(' - ');
+		let oldEng = arr[0];
+		let oldUkr = arr[1];
+		document.querySelector('#buttonChangeWord').innerHTML = creteChangeWordText(oldEng, oldUkr);
+		document.querySelector('#buttonChangeWord').onclick = '';
+		document.querySelector('#butChange').onclick = function (){
+			let newEng = document.querySelector('#changeFieldTextEng').value;
+			let newUkr = document.querySelector('#changeFieldTextUkr').value;
+			senderChange(oldEng, oldUkr, newEng, newUkr);
+		}
+		let fullWord = content;
+		//senderChangeWord(fullWord);
+	}
+	
+}
+
+function senderChange(oldEng, oldUkr, newEng, newUkr){
+	console.log('Function senderChange is start');
+	let param = '&wordOldEng=' + oldEng + '&wordOldUkr=' + oldUkr + '&wordNewEng=' + newEng + '&wordNewUkr=' + newUkr ;
+	dictionary();
+	let doc = document.querySelector("#buttonChangeWord");
+	doc.innerHTML = 'редагувати';
+	doc.onclick = function(){
+		changeWord();
+	}
+	document.querySelector("#containerOptionsWord").innerHTML += time() + '"' +
+	  	oldEng + '-' + oldUkr +  '" було замінено на: ' + '"' + newEng + '-' + newUkr + '"';
+	document.querySelector('#wordNameOptions').innerHTML = '';
+
+				//dictionary();
+	if(production == true){
+		//production
+		myUrl = "http://qwertyfour.zzz.com.ua/dictionary/php/file.php?funk=changeWord" + param;
+	}
+	else{
+		//develop
+		myUrl = "http://localhost/www/Projects/Dictionary/file.php?funk=changeWord" + param;
+	}
+	xhr.open('GET', myUrl, false);
+	xhr.onreadystatechange = function (){
+		if(xhr.readyState === 4){
+			if(xhr.status === 200 ){
+				//let text = xhr.responseText;
+				
+				
+				
+
+
+			}
+		}
+	}
+	xhr.send();
+	
+}
+
+function creteChangeWordText(eng, ukr){
+	let text = '';
+	text += '<div id="changeFieldEng" class="changeField">' + 
+				'<input type="text" id="changeFieldTextEng" value="' + eng + '"/>' + 
+			'</div>' + 
+			'<div id="changeFieldEng" class="changeField">' + 
+				'<input type="text" id="changeFieldTextUkr" value="' + ukr + '"/>' + 
+			'</div>' + 
+			'<div id="butChange">' +
+				'<input type="button" value="OK" id="butChange" >' +
+			'</div>';
+	return text;
 }
 
 function senderDeleteWord(data, fullWord){
@@ -192,6 +269,7 @@ function senderAdd(){
 				log.innerHTML = '<span style="font-style: italic; font-weight: bolder">' + time() + '</span>' + text + log.innerHTML;
 				document.querySelector("#butInputAdd").onclick = function (){
 					senderAdd();
+					refreshStats();
 				}
 				log.style.border = '2px solid orange';
 			}

@@ -40,8 +40,6 @@ if($_GET['funk'] == 'allWords'){
     while ($res = mysqli_fetch_array($result)) {
         $arr[] = $res['engWord'].'-'.$res['ukrWord'];
     }
-
-    //$result = $result['engWord'];
     echo json_encode($arr);
 }
 
@@ -83,6 +81,8 @@ if($_GET['funk'] == 'getStats'){
         echo "Помилка при зчитуванні статистики: " . mysqli_error($link);
     }
 }
+
+
 
 
 
